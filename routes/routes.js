@@ -67,7 +67,7 @@ const Routes = (billService) => {
         try {
             const {username, plan} = req.body
             await billService.planForUser(username, plan)
-            res.redirect(`/price_plans/${plan}`)
+            res.redirect(`/price_plans/${plan}?plan=${plan}`)
         } catch (error) {
             res.send("An error has occured!")
             console.log(error.stack)
