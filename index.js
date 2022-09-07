@@ -20,14 +20,21 @@ app.use(session({
 }))
 app.use(flash())
 
+// USE DATABASE AND BILL SERVICE WITH ROUTES
+const db = require("./db/connection")
+const billService = require("./services/bill-service")(db)
+const routes = require("./routes/routes")(billService)
+
 // PROJECT ROUTES
-// test route
-app.get("/test", (req, res) => {
-    res.json({
-        status: "success",
-        data: "App is running"
-    })
-})
+// GET ROUTES
+app.get("/", routes.index)
+app.get("/price_plans", routes.plans)
+app.get("/price_plans/:id", routes.planUsers)
+app.get("/link_user", routes.choosePlan)
+
+// POST ROUTES
+app.post("/calc_bill", routes.calcBill)
+app.post("/link_user", routes.allocateUser)
 
 // LISTEN FOR APP INSTANCE
 const PORT = process.env.PORT || 3000
