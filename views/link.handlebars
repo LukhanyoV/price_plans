@@ -1,0 +1,19 @@
+<h2>Allocate price plan to user</h2>
+
+<form action="/link_user" method="post">
+    <label for="username">
+        Username: <input type="text" name="username" id="username">
+    </label>
+    <label for="usage">
+        Price plan: 
+        <select name="plan">
+            {{#unless plans}}
+            <option disabled>No active plans</option>
+            {{/unless}}
+            {{#each plans}}
+            <option value="{{id}}">{{plan_name}}</option>
+            {{/each}}
+        </select>
+    </label>
+    <button type="submit">Allocate</button>
+</form>

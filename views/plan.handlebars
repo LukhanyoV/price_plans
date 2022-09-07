@@ -1,0 +1,12 @@
+<h2>Price Plans</h2>
+
+<div>
+    <table>
+        {{#each plans}}
+        <tr>
+            <td>{{plan_name}}</td>
+            <td><a href="/price_plans/{{id}}?plan={{plan_name}}">view users</a></td>
+        </tr>
+        {{/each}}
+    </table>
+</div>

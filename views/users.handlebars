@@ -1,0 +1,15 @@
+<h2>Users with price plan</h2>
+
+<h3>Price Plan: {{plan}}</h3>
+
+{{#if users}}
+<ul>
+    {{#each users}}
+    <li>{{first_name}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+{{#unless users}}
+<h3>No users available</h3>
+{{/unless}}

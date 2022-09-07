@@ -1,0 +1,24 @@
+<h2>Phone Bill Widget</h2>
+<h3>Calculate total phone bill</h3>
+
+<form action="/calc_bill" method="post">
+    <label for="username">
+        Username: <input type="text" name="username" id="username">
+    </label>
+    <label for="usage">
+        Usage: <input type="text" name="usage" id="usage">
+    </label>
+    <button type="submit">Calculate</button>
+</form>
+
+<div>
+    <h3>Phone Bill</h3>
+    <div>
+        {{#if totalBill}}
+            <h4>R{{totalBill}}</h4>
+        {{/if}}
+        {{#unless totalBill}}
+            <h4>R{{totalBill}}</h4>
+        {{/unless}}
+    </div>
+</div>
