@@ -1,8 +1,9 @@
 const Routes = (billService) => {
     const index = async (req, res) => {
         try {
+            const totalBill = 0
             res.render("index", {
-                totalBill: 0
+                totalBill: totalBill.toFixed(2)
             })
         } catch (error) {
             res.send("An error has occured!")
