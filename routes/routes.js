@@ -28,7 +28,6 @@ const Routes = (billService) => {
             const {id} = req.params
             const {plan} = req.query
             const users = await billService.usersForPlan(id)
-            console.log(users)
             res.render("users", {
                 plan,
                 users
