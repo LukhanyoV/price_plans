@@ -8,7 +8,7 @@ const BillService = require("../services/bill-service")
 
 describe("Testing my Bill Service Factory Function", () => {
     beforeEach(async () => {
-        await db.none("TRUNCATE FROM users")
+        await db.none("TRUNCATE users")
     })
 
     it("should be able to add user price plan", async () => {
