@@ -26,6 +26,7 @@ nav ul li {
 nav ul li a {
     text-transform: uppercase;
     text-decoration: none;
+    padding: 1em;
 }
 
 a:visited {
@@ -38,7 +39,6 @@ a, a:visited {
 
 a:hover {
     background-color: white;
-    padding: 1em;
 }
 
 form {

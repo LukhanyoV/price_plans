@@ -1,7 +1,8 @@
 const Routes = (billService) => {
     const index = async (req, res) => {
         try {
-            const totalBill = 0
+            const totalBill = req.session?.bill || 0
+            delete req.session?.bill
             res.render("index", {
                 totalBill: totalBill.toFixed(2)
             })
@@ -26,11 +27,13 @@ const Routes = (billService) => {
     const planUsers = async (req, res) => {
         try {
             const {id} = req.params
-            const {plan} = req.query
             const users = await billService.usersForPlan(id)
+            const plans = await billService.getAvailablePlans()
+            const plan = plans.find(plan => plan.id == id)
             res.render("users", {
                 plan,
-                users
+                users,
+                plan: plan.plan_name
             })
         } catch (error) {
             res.send("An error has occured!")
@@ -54,9 +57,8 @@ const Routes = (billService) => {
         try {
             const {username, usage} = req.body
             const totalBill = await billService.calulateBill(username, usage)
-            res.render("index", {
-                totalBill: totalBill.toFixed(2)
-            })
+            req.session.bill = totalBill
+            res.redirect("back")
         } catch (error) {
             res.send("An error has occured!")
             console.log(error.stack)
@@ -67,7 +69,7 @@ const Routes = (billService) => {
         try {
             const {username, plan} = req.body
             await billService.planForUser(username, plan)
-            res.redirect(`/price_plans/${plan}?plan=${plan}`)
+            res.redirect(`/price_plans/${plan}`)
         } catch (error) {
             res.send("An error has occured!")
             console.log(error.stack)

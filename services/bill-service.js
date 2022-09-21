@@ -5,7 +5,8 @@ const BillService = (db) => {
     }
 
     const planForUser = async (username, planid) => {
-        if(await findUser(username, planid)){
+        const condition = await db.one("SELECT COUNT(*) FROM users WHERE first_name = $1", [username])
+        if(condition.count != 0){
             await db.none("UPDATE users SET user_plan = $2 WHERE first_name = $1", [username, planid])
         } else {
             await db.none("INSERT INTO users (first_name, user_plan) VALUES ($1, $2)", [username, planid])
