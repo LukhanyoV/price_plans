@@ -56,8 +56,16 @@ const Routes = (billService) => {
     const calcBill = async (req, res) => {
         try {
             const {username, usage} = req.body
-            const totalBill = await billService.calulateBill(username, usage)
-            req.session.bill = totalBill
+            if(!username && !usage){
+                req.flash("error", "Please enter your name and usage")
+            } else if(!username){
+                req.flash("error", "Please enter your name")
+            } else if(!usage){
+                req.flash("error", "Please enter usage")
+            } else {
+                const totalBill = await billService.calulateBill(username, usage)
+                req.session.bill = totalBill
+            }
             res.redirect("back")
         } catch (error) {
             res.send("An error has occured!")
@@ -68,8 +76,19 @@ const Routes = (billService) => {
     const allocateUser = async (req, res) => {
         try {
             const {username, plan} = req.body
-            await billService.planForUser(username, plan)
-            res.redirect(`/price_plans/${plan}`)
+            if(!username && !plan){
+                req.flash("error", "Please enter your name and choose a plan")
+                res.redirect("back")
+            } else if(!username){
+                req.flash("error", "Please enter your name")
+                res.redirect("back")
+            } else if(!plan){
+                req.flash("error", "Please choose a plan")
+                res.redirect("back")
+            } else {
+                await billService.planForUser(username, plan)
+                res.redirect(`/price_plans/${plan}`)
+            }
         } catch (error) {
             res.send("An error has occured!")
             console.log(error.stack)

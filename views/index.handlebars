@@ -1,24 +1,36 @@
-<h2>Phone Bill Widget</h2>
-<h3>Calculate total phone bill</h3>
-
-<form action="/calc_bill" method="post">
-    <label for="username">
-        Username: <input type="text" name="username" id="username">
-    </label>
-    <label for="usage">
-        Usage: <input type="text" name="usage" id="usage">
-    </label>
-    <button type="submit">Calculate</button>
-</form>
-
-<div class="bill">
-    <h3>Phone Bill: </h3>
-    <div>
-        {{#if totalBill}}
-            <h4>R{{totalBill}}</h4>
-        {{/if}}
-        {{#unless totalBill}}
-            <h4>R{{totalBill}}</h4>
-        {{/unless}}
-    </div>
+<div class="row">
+    <h3>Phone Bill Widget</h3>
+    <h4>Calculate total phone bill</h4>
 </div>
+
+<div class="row">
+    {{#if messages}}
+    <div class="left red">
+        {{messages.error}}
+    </div>
+    {{/if}}
+    <form action="/calc_bill" method="post" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" placeholder="eg: Lukhanyo" name="username" id="username" class="validate">
+                <label for="username">Username</label>
+            </div>
+        {{!-- </div>
+        <div class="row"> --}}
+            <div class="input-field col s6">
+                <input type="text" placeholder="eg: sms, call" name="usage" id="usage" class="validate">
+                <label for="usage">Usage</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn" type="submit">CALCULATE</button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <h5>Phone Bill: </h5>
+    <h5>R{{totalBill}}</h5>
+</div>
+
+<hr>
