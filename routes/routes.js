@@ -108,7 +108,12 @@ const Routes = (billService) => {
         if(!plan || !callcost || !smscost){
             req.flash("error", "Please make sure fill in all the fields")
         } else {
-            req.flash("success", "Price plan added successfully")
+            const exist = await billService.addNewPlan(req.body)
+            if(exist === false){
+                req.flash("error", "Plan name already exist")
+            } else {
+                req.flash("success", "Price plan added successfully")
+            }
         }
         res.redirect("back")
     }

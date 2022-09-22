@@ -34,12 +34,25 @@ const BillService = (db) => {
         return total
     }
 
+    const addNewPlan = async ({plan, callcost, smscost}) => {
+        plan = plan.trim().toLowerCase()
+        const findPlan = await db.oneOrNone("SELECT * FROM price_plan WHERE plan_name = $1", [plan])
+        if(findPlan === null){
+            await db.none("INSERT INTO price_plan (plan_name, call_price, sms_price) VALUES ($1, $2, $3)", [plan, callcost, smscost])
+        } else {
+            return false
+            // update works but  cancelled it
+            await db.none("UPDATE price_plan SET call_price = $2, sms_price = $2 WHERE plan_name = $1", [plan, callcost, smscost])
+        }
+    }
+
     return {
         findUser, 
         planForUser,
         getAvailablePlans,
         usersForPlan,
-        calulateBill
+        calulateBill,
+        addNewPlan
     }
 }
 
