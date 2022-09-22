@@ -64,7 +64,11 @@ const Routes = (billService) => {
                 req.flash("error", "Please enter usage")
             } else {
                 const totalBill = await billService.calulateBill(username, usage)
-                req.session.bill = totalBill
+                if(totalBill === false){
+                    req.flash("error", "You are not subscribed to a price plan")
+                } else {
+                    req.session.bill = totalBill
+                }
             }
             res.redirect("back")
         } catch (error) {

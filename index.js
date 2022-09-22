@@ -37,5 +37,4 @@ app.post("/calc_bill", routes.calcBill)
 app.post("/link_user", routes.allocateUser)
 
 // LISTEN FOR APP INSTANCE
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => console.log(`App running on PORT: ${PORT}`))
+module.exports = app

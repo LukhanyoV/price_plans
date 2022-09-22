@@ -24,6 +24,7 @@ const BillService = (db) => {
 
     const calulateBill = async (username, usage) => {
         const user = await db.oneOrNone("SELECT * FROM users AS u INNER JOIN price_plan AS p ON p.id = u.user_plan WHERE u.first_name = $1", [username])
+        if(!user) return false
         let total = 0
         if(user !== null){
             usage = usage.replace(/\s/g, "").split(",")

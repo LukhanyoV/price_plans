@@ -1,6 +1,6 @@
 const pgp = require("pg-promise")({})
 const config = {
-    connectionString: process.env.DATABASE_URL || "postgresql://postgres:nimda@localhost:5432/price_plans"
+    connectionString: "postgres://rinnylqp:aQhMPmS0v3vByzVscw3qa45Lu6dllK6u@jelani.db.elephantsql.com/rinnylqp"
 }
 if(process.env.NODE_ENV === "production"){
     config.ssl = {
