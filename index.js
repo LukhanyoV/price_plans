@@ -31,10 +31,12 @@ app.get("/", routes.index)
 app.get("/price_plans", routes.plans)
 app.get("/price_plans/:id", routes.planUsers)
 app.get("/link_user", routes.choosePlan)
+app.get("/new_plan", routes.newPlan)
 
 // POST ROUTES
 app.post("/calc_bill", routes.calcBill)
 app.post("/link_user", routes.allocateUser)
+app.post("/new_plan", routes.addNewPlan)
 
 // LISTEN FOR APP INSTANCE
 module.exports = app

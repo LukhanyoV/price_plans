@@ -99,13 +99,29 @@ const Routes = (billService) => {
         }
     }
 
+    const newPlan = async (req, res) => {
+        res.render("new")
+    }
+
+    const addNewPlan = async (req, res) => {
+        let {plan, callcost, smscost} = req.body
+        if(!plan || !callcost || !smscost){
+            req.flash("error", "Please make sure fill in all the fields")
+        } else {
+            req.flash("success", "Price plan added successfully")
+        }
+        res.redirect("back")
+    }
+
     return {
         index,
         plans,
         planUsers,
         choosePlan,
         calcBill,
-        allocateUser
+        allocateUser,
+        newPlan,
+        addNewPlan
     }
 }
 

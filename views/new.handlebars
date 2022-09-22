@@ -1,0 +1,44 @@
+<div class="row">
+    <h4>Add new plan</h4>
+</div>
+
+<div class="row">
+    {{#if messages.error}}
+    <div class="red-text flash">
+        {{messages.error}}
+    </div>
+    {{/if}}
+    {{#if messages.success}}
+    <div class="green-text flash">
+        {{messages.success}}
+    </div>
+    {{/if}}
+    <form action="/new_plan" method="post" class="col s12">
+    <p class="lightblue-text">
+        If you are seeing this it means am still working on this page.
+    </p>
+    {{!-- <div class="center"> --}}
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" placeholder="eg: Talk Longer" name="plan" id="plan">
+                <label for="plan">Plan name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="number" step=".01" placeholder="eg: 2.75" name="callcost" id="callcost">
+                <label for="callcost">Call cost</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="number" step=".01" placeholder="eg: 2.75" name="smscost" id="smscost">
+                <label for="smscost">Sms cost</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-large" type="submit">ADD</button>
+        </div>
+    {{!-- </div> --}}
+    </form>
+</div>
