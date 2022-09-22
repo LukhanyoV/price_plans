@@ -1,0 +1,22 @@
+<div class="row">
+    <h3>Users with price plan</h3>
+    <h4>Price Plan: {{plan}}</h4>
+</div>
+
+<div class="row">
+    <table>
+        {{#if users}}
+        <tr>
+            {{#each users}}
+            <td>{{first_name}}</td>
+            {{/each}}
+        </tr>
+        {{/if}}
+
+        {{#unless users}}
+        <tr>
+            <td>No users are subscribed to this price plan.</td>
+        </tr>
+        {{/unless}}
+    </table>
+</div>

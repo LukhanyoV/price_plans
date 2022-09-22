@@ -1,0 +1,36 @@
+<div class="row">
+    <h3>Phone Bill Widget</h3>
+    <h4>Calculate total phone bill</h4>
+</div>
+
+<div class="row">
+    {{#if messages}}
+    <div class="red-text flash">
+        {{messages.error}}
+    </div>
+    {{/if}}
+    <form action="/calc_bill" method="post" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" placeholder="eg: Lukhanyo" name="username" id="username" class="validate">
+                <label for="username">Username</label>
+            </div>
+        {{!-- </div>
+        <div class="row"> --}}
+            <div class="input-field col s6">
+                <input type="text" placeholder="eg: sms, call" name="usage" id="usage" class="validate">
+                <label for="usage">Usage</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn" type="submit">CALCULATE</button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <h5>Phone Bill: </h5>
+    <h5>R{{totalBill}}</h5>
+</div>
+
+<hr>
